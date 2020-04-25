@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "da:23:b3:86:52:42:69:cd:9a:a4:f2:30:31:47:9d:71"
+      - checkout
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker build -t bvolpini/mydocker:$CIRCLE_SHA1 .
+      - run: docker push bvolpini/mydocker:$CIRCLE_SHA1
+      - run: ssh -o StrictHostKeyChecking=no root@digitalocean "/bin/bash /root/docker/deploy.sh $CIRCLE_SHA1"

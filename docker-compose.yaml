@@ -2,7 +2,7 @@ version: "2"
 
 services:
 
-  holadocker:
+  mydocker:
     build: .
     ports:
       - 80:80
