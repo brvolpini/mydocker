@@ -10,4 +10,4 @@ jobs:
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t bvolpini/mydocker:$CIRCLE_SHA1 .
       - run: docker push bvolpini/mydocker:$CIRCLE_SHA1
-      - run: ssh -o StrictHostKeyChecking=no root@digitalocean "/bin/bash /root/docker/deploy.sh $CIRCLE_SHA1"
+      - run: ssh -o StrictHostKeyChecking=no root@161.35.54.74 "/bin/bash /root/docker/deploy.sh $CIRCLE_SHA1"
