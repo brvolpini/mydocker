@@ -36,7 +36,6 @@ jobs:
   cd:
     name: ${{ matrix.icon }} Deployment ${{ matrix.country }}
     runs-on: "ubuntu-20.04"
-    if: github.ref == 'refs/heads/development' || (github.ref == 'refs/heads/development' && github.event_name == 'pull_request' && github.event.pull_request.merged)
     strategy:
       matrix:
         include:
@@ -52,6 +51,9 @@ jobs:
              aws-region: us-east-1
              region: ["LATAM", "CA"]
              icon: 🇨🇷
+    if: |
+      github.ref == 'refs/heads/development' || 
+      (github.ref == 'refs/heads/development' && github.event_name == 'pull_request' && github.event.pull_request.merged)
          
     steps:
       - name: Test
