@@ -4,10 +4,10 @@ run-name: 'Deployment: Development to ${{ inputs.country }} by @${{ github.actor
 
 on:
   push:
-    branches:
-      - development
-    tags-ignore:
-      - '*'  
+    # branches:
+    #   - development
+    # tags-ignore:
+    #   - '*'  
   workflow_dispatch:
     inputs:
       country:
