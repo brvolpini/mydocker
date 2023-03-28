@@ -36,7 +36,7 @@ jobs:
   cd:
     name: ${{ matrix.icon }} Deployment ${{ matrix.country }}
     runs-on: "ubuntu-20.04"
-    if: github.ref == 'refs/heads/development' || (github.ref == 'refs/heads/development' && ${{ github.event.inputs.country }}) || (github.ref == 'refs/heads/development' && github.event_name == 'pull_request' && github.event.pull_request.merged)
+    if: github.ref == 'refs/heads/development' || (github.ref == 'refs/heads/development' && github.event_name == 'pull_request' && github.event.pull_request.merged)
     strategy:
       matrix:
         include:
