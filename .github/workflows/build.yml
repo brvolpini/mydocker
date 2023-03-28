@@ -36,6 +36,7 @@ jobs:
   cd:
     name: ${{ matrix.icon }} Deployment ${{ matrix.country }}
     runs-on: "ubuntu-20.04"
+    if: ((github.event_name == 'pull_request' && github.event.pull_request.merged) || ${{ github.event.inputs.country != '' }}) && github.ref == 'refs/heads/development'
     strategy:
       matrix:
         include:
@@ -54,4 +55,4 @@ jobs:
          
     steps:
       - name: Test
-        run: echo "This is a test from ${{ matrix.country }}"
+        run: sleep 10 && echo "This is a test from ${{ matrix.country }}"
