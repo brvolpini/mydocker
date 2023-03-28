@@ -1,21 +1,57 @@
-name: Test
+name: 'Deployment: Development'
+
+run-name: 'Deployment: Development to ${{ inputs.country }} by @${{ github.actor }}'
 
 on:
+  push:
+    branches:
+      - development
+    tags-ignore:
+      - '*'  
   workflow_dispatch:
     inputs:
       country:
         description: 'Country deployment'
         required: true
-        default: 'chile'
+        default: 'guatemala'
         type: choice
         options:
         - chile
+        - spain
+        - costarica
+        - LATAM
+        - EUROPE
+        - CA
+        - all
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.inputs.country }}
+  cancel-in-progress: false
+
+env:
+  application: core
+  environment: development
 
 jobs:
-  build:
-
+  cd:
+    name: ${{ matrix.icon }} Deployment ${{ matrix.country }}
     runs-on: "ubuntu-20.04"
-
+    strategy:
+      matrix:
+        include:
+           - country: chile
+             aws-region: us-east-1
+             region: ["LATAM"]
+             icon: 🇨🇱
+           - country: spain
+             aws-region: eu-west-1
+             region: ["EUROPE"]
+             icon: 🇪🇸
+           - country: costarica
+             aws-region: us-east-1
+             region: ["LATAM", "CA"]
+             icon: 🇨🇷
+         
     steps:
-    - name: Test
-      run: echo "This is a test"
+      - name: Test
+        run: echo "This is a test from ${{ matrix.country }}"
