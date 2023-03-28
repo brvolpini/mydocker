@@ -55,4 +55,10 @@ jobs:
          
     steps:
       - name: Test
+        if: |
+          matrix.country == inputs.country  ||
+          matrix.region[0] == inputs.country ||
+          matrix.region[1] == inputs.country ||
+          inputs.country == 'all' ||
+          (github.ref == 'refs/heads/development' && github.event_name == 'push')
         run: sleep 10 && echo "This is a test from ${{ matrix.country }}"
