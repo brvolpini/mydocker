@@ -55,4 +55,4 @@ jobs:
          
     steps:
       - name: Test
-        run: echo "This is a test from ${{ matrix.country }}"
+        run: sleep 10 && echo "This is a test from ${{ matrix.country }}"
