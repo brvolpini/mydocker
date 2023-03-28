@@ -3,11 +3,11 @@ name: 'Deployment: Development'
 run-name: 'Deployment: Development to ${{ inputs.country }} by @${{ github.actor }}'
 
 on:
-  push:
-    branches:
-      - development
-    tags-ignore:
-      - '*'  
+  # push:
+  #   branches:
+  #     - development
+  #   tags-ignore:
+  #     - '*'  
   workflow_dispatch:
     inputs:
       country:
@@ -36,7 +36,7 @@ jobs:
   cd:
     name: ${{ matrix.icon }} Deployment ${{ matrix.country }}
     runs-on: "ubuntu-20.04"
-    if: github.ref == 'refs/heads/development'
+    if: github.ref == 'refs/heads/development' 
     strategy:
       matrix:
         include:
