@@ -9,6 +9,8 @@ on:
     tags-ignore:
       - '*'  
   workflow_dispatch:
+    branches:
+      - development
     inputs:
       country:
         description: 'Country deployment'
@@ -22,7 +24,7 @@ on:
         - LATAM
         - EUROPE
         - CA
-        - all
+
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.inputs.country }}
