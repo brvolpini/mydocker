@@ -4,10 +4,10 @@ run-name: 'Deployment: Development to ${{ inputs.country }} by @${{ github.actor
 
 on:
   push:
-    # branches:
-    #   - development
-    # tags-ignore:
-    #   - '*'  
+    branches:
+      - development
+    tags-ignore:
+      - '*'  
   workflow_dispatch:
     inputs:
       country:
@@ -63,4 +63,4 @@ jobs:
           matrix.region[1] == inputs.country ||
           inputs.country == 'all' ||
           (github.ref == 'refs/heads/development' && github.event_name == 'push')
-        run: sleep 10 && echo "This is a test from ${{ matrix.country }}"
+        run: echo "This is a test from ${{ matrix.country }}"
