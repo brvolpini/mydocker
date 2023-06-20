@@ -1,2 +1,1 @@
-# mydocker
-prueba de CI/CD
+This is a test from costarica
