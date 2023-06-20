@@ -60,9 +60,8 @@ jobs:
 
       - name: Test
         run: |
-          echo "This is a test from ${{ matrix.country }}" > ${{ matrix.country }}.txt
-          rm README.md 
-          cat *.txt >> README.md
+          rm README.md
+          echo "This is a test from ${{ matrix.country }}" >> README.md
 
       - name: Commit files
         run: |
