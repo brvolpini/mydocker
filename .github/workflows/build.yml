@@ -58,7 +58,7 @@ jobs:
 
       - name: Test
         run: |
-          echo "This is a test from ${{ matrix.country }}" > country.txt
+          echo "This is a test from ${{ matrix.country }}" > ${{ matrix.country }}.txt
           rm README.md 
           cat *.txt >> README.md
 
