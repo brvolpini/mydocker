@@ -5,7 +5,7 @@ run-name: 'Deployment: Development to ${{ inputs.country }} by @${{ github.actor
 on:
   push:
     branches:
-      - development
+      - master
     tags-ignore:
       - '*'  
   workflow_dispatch:
@@ -53,5 +53,22 @@ jobs:
              icon: 🇨🇷
          
     steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
       - name: Test
-        run: echo "This is a test from ${{ matrix.country }}"
+        run: |
+          echo "This is a test from ${{ matrix.country }}" > country.txt
+          rm README.md 
+          cat *.txt >> README.md
+
+      - name: Commit files
+        run: |
+            git config --local user.email ${{ secrets.GIT_EMAIL }}
+            git config --local user.name ${{ secrets.GIT_USER }}
+            git commit -a -m "Add changes"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          force_with_lease: true
