@@ -68,6 +68,7 @@ jobs:
           path: ./salida.txt
 
   push_changes:
+    needs: cd
     runs-on: "ubuntu-20.04"
     steps:
       - name: Download Artifact
