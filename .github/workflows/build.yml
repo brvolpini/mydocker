@@ -60,7 +60,6 @@ jobs:
 
       - name: Test
         run: |
-          touch salida.txt
           echo "This is a test from ${{ matrix.country }}\n" >> salida.txt
       - name: upload artifact
         uses: actions/upload-artifact@master
