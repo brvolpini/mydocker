@@ -61,8 +61,11 @@ jobs:
       - name: Test
         run: |
           rm README.md
-          echo "This is a test from ${{ matrix.country }}" >> README.md
+          echo "This is a test from ${{ matrix.country }}" >> ${{ matrix.country }}.txt
 
+  push_changes:
+    runs-on: "ubuntu-20.04"
+    steps:
       - name: Commit files
         run: |
             git config --local user.email ${{ secrets.GIT_EMAIL }}
@@ -74,3 +77,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           force_with_lease: true
+      
